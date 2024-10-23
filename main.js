@@ -10,6 +10,28 @@ function getRandonNNumber(min, max){
     return randonNNumber
 }
 
+btnNO.addEventListener("click" , (e) => {
+    const containerHeight = container.getBoundingClientRect().height;
+    const containerWidth = container.getBoundingClientRect().width;
+    const btnHeight = btnNO.getBoundingClientRect().height;
+    const btnWidth = btnNO.getBoundingClientRect().width;
+    const btnTop = btnNO.getBoundingClientRect().top;
+    const btnLeft = btnNO.getBoundingClientRect().left;
+
+    let newTop = btnTop;
+    let newLeft = btnLeft;
+
+    while (Math.abs(newTop - btnTop) < containerHeight / 3){
+        newTop = getRandonNNumber(0 , containerHeight - btnHeight)
+    }
+
+    while (Math.abs(newLeft - btnLeft) < containerHeight / 3){
+        newLeft = getRandonNNumber(0 , containerWidth - btnWidth)
+    }
+    btnNO.style.top = Math.floor(newTop) + "px"
+    btnNO.style.left = Math.floor(newLeft) + "px"
+})
+
 btnNO.addEventListener("mouseover" , (e) => {
     const containerHeight = container.getBoundingClientRect().height;
     const containerWidth = container.getBoundingClientRect().width;
@@ -37,5 +59,4 @@ btnYes.addEventListener("click" , (e) =>{
     imageOne.classList.add("hide")
     imageTwo.classList.remove("hide")
     header_text.innerHTML = "My kaspi: 87072016113".toUpperCase()
-
 })
