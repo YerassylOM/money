@@ -10,7 +10,7 @@ function getRandonNNumber(min, max){
     return randonNNumber
 }
 
-btnNO.addEventListener("click" , (e) => {
+function moveButton() {
     const containerHeight = container.getBoundingClientRect().height;
     const containerWidth = container.getBoundingClientRect().width;
     const btnHeight = btnNO.getBoundingClientRect().height;
@@ -21,38 +21,27 @@ btnNO.addEventListener("click" , (e) => {
     let newTop = btnTop;
     let newLeft = btnLeft;
 
-    while (Math.abs(newTop - btnTop) < containerHeight / 3){
-        newTop = getRandonNNumber(0 , containerHeight - btnHeight)
+    // Ensure new position is at least 1/3 of the container height away from the original position
+    while (Math.abs(newTop - btnTop) < containerHeight / 3) {
+        newTop = getRandonNNumber(0, containerHeight - btnHeight);
     }
 
-    while (Math.abs(newLeft - btnLeft) < containerHeight / 3){
-        newLeft = getRandonNNumber(0 , containerWidth - btnWidth)
-    }
-    btnNO.style.top = Math.floor(newTop) + "px"
-    btnNO.style.left = Math.floor(newLeft) + "px"
-})
-
-btnNO.addEventListener("mouseover" , (e) => {
-    const containerHeight = container.getBoundingClientRect().height;
-    const containerWidth = container.getBoundingClientRect().width;
-    const btnHeight = btnNO.getBoundingClientRect().height;
-    const btnWidth = btnNO.getBoundingClientRect().width;
-    const btnTop = btnNO.getBoundingClientRect().top;
-    const btnLeft = btnNO.getBoundingClientRect().left;
-
-    let newTop = btnTop;
-    let newLeft = btnLeft;
-
-    while (Math.abs(newTop - btnTop) < containerHeight / 3){
-        newTop = getRandonNNumber(0 , containerHeight - btnHeight)
+    while (Math.abs(newLeft - btnLeft) < containerWidth / 3) {
+        newLeft = getRandonNNumber(0, containerWidth - btnWidth);
     }
 
-    while (Math.abs(newLeft - btnLeft) < containerHeight / 3){
-        newLeft = getRandonNNumber(0 , containerWidth - btnWidth)
-    }
-    btnNO.style.top = Math.floor(newTop) + "px"
-    btnNO.style.left = Math.floor(newLeft) + "px"
-})
+    btnNO.style.top = Math.floor(newTop) + "px";
+    btnNO.style.left = Math.floor(newLeft) + "px";
+}
+
+// Add both click and touchstart event listeners
+btnNO.addEventListener("click", (e) => {
+    moveButton();
+});
+
+btnNO.addEventListener("touchstart", (e) => {
+    moveButton();
+});
 
 btnYes.addEventListener("click" , (e) =>{
     btnNO.classList.add("hide");
